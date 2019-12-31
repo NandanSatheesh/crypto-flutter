@@ -19,12 +19,17 @@ class _MyHomePageState extends State<MyHomePage> {
       Center(child: CircularProgressIndicator());
 
   @override
+  void initState() {
+    _vm.getCryptoResponse();
+  }
+
+  @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: FutureBuilder(
-          future: _vm.getCryptoResponse(),
+        body: StreamBuilder(
+          stream: _vm.dataStream.stream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
