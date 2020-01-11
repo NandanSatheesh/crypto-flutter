@@ -28,8 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: StreamBuilder(
-          stream: _vm.dataStream.stream,
+        body: FutureBuilder(
+          future: _vm.getCryptoResponse(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
